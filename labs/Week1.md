@@ -64,4 +64,4 @@ case when the list contains elements.
    
 6. Write a function `take’ :: Int -> [a] -> [a]`, where `take’ n xs`
 returns the first `n` elements of `xs` as a list (if `xs` contains less than
-`n` elements, your function should return all of `xs`).
+n` elements, your function should return all of `xs`).
