@@ -11,25 +11,25 @@ elements of xs as a list until it reaches an element of \texttt{xs}
 for which \texttt{p} is false. For example, myTakeWhile (\x -> x < 3) [1, 2, 3, 4]
 returns [1, 2]. -}
 
-myTakeWhile :: (a -> Bool) -> [a] -> [a] 
-myTakeWhile p xs = undefined
+myTakeWhile :: (a -> Bool) -> [a] -> [a]
+myTakeWhile p = foldr (\x acc -> if p x then x:acc else acc ) []
 
 {- 2. Find the penultimate (second to last) element in list l. Behaviour is 
   undefined if the list has fewer than 2 elements. -}
 
 penultimate :: [a] -> a
-penultimate l = undefined
+penultimate l = l !! ((length l) - 2)
 
 {- 3. Find the element at index k in list l. For example, findK 2 [0,0,1,0,0,0]
 returns 1. -}
 
 findK :: Int -> [a] -> a
-findK k l = undefined
+findK k l = l !! k
 
 {- 4. Determine if a list, l, is a palindrome. -}
 
 isPalindrome :: Eq a => [a] -> Bool
-isPalindrome l = undefined
+isPalindrome l = if l == (reverse l) then True else False
 
 {- 5. Duplicate the elements in list xs. For example duplicate [1,2,3] should
   give the list [1,1,2,2,3,3]. Hint: The concat [l] function flattens a list
@@ -37,7 +37,10 @@ isPalindrome l = undefined
   [1,2,3,3,4,5]. -}
 
 duplicate :: [a] -> [a]
-duplicate l = undefined
+duplicate l = concat $ map dupe l
+
+dupe :: a -> [a]
+dupe x = x:[x]
 
 {- 6. Split a list, l, at element k into a tuple containing the first part of
   l up to and including k, followed by the part of l which comes after
