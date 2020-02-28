@@ -48,13 +48,14 @@ dupe x = x:[x]
   ([1,1,1,2],[2,2]). -}
 
 splitAtIndex :: Int -> [a] -> ([a], [a])
-splitAtIndex k l = undefined
+splitAtIndex k l = (take k l, drop k l)
 
 {- 7. Drop the element at index k in list l. For example dropK 3
     [0,0,0,1,0,0,0] returns [0,0,0,0,0,0]. -}
 
 dropK :: Int -> [a] -> [a]
-dropK k l = undefined
+dropK k [] = []
+dropK k (x:xs) = if k == 1 then xs else x:(dropK (k-1) xs)
 
 {- 8. Extract elements between ith and kth element in list l,  including i but not k. 
    For example, slice 3 6 [0,0,0,1,2,3,0,0,0]  returns [1,2,3]. -}
