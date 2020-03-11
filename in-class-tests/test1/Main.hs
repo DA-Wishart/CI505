@@ -48,32 +48,34 @@ dupe x = x:[x]
   ([1,1,1,2],[2,2]). -}
 
 splitAtIndex :: Int -> [a] -> ([a], [a])
-splitAtIndex k l = undefined
+splitAtIndex k l = (take k l, drop k l)
 
 {- 7. Drop the element at index k in list l. For example dropK 3
     [0,0,0,1,0,0,0] returns [0,0,0,0,0,0]. -}
 
 dropK :: Int -> [a] -> [a]
-dropK k l = undefined
+dropK k (x:xs) = if k == 1 then xs else x:(dropK (k-1) xs)
+dropK k [] = []
 
 {- 8. Extract elements between ith and kth element in list l,  including i but not k. 
    For example, slice 3 6 [0,0,0,1,2,3,0,0,0]  returns [1,2,3]. -}
 
 slice :: Int -> Int -> [a] -> [a]
-slice i k l = undefined
-
+slice i k [] = []
+slice i k (x:xs) = if i == 0 && k > 0 then x:slice i (k-1) xs else slice (i-1) (k-1) xs
 {- 9. Insert element x in list l at index k. For example,
 insertElem 2 5 [0,0,0,0,0,0] returns [0,0,0,0,0,2,0]. If index k
  does not exist in l, insert x at the tail of l. -}
 
 insertElem :: a -> Int -> [a] -> [a]
-insertElem x k xs = undefined
+insertElem x k (y:ys) = if k == 0 then x:(y:ys) else y:(insertElem x (k-1) ys)
+insertElem x k [] =[x]
 
 {- 10. Rotate list l n places left, where n is less than the length of the list. 
    For example, rotate 2 [1,2,3,4,5] gives [3,4,5,1,2]. -}
 
 rotate :: Int -> [a] -> [a]
-rotate n l = undefined
+rotate n l = drop n l ++ take n l
 
 {- TESTS
 
