@@ -18,7 +18,7 @@ myTakeWhile p = foldr (\x acc -> if p x then x:acc else acc ) []
   undefined if the list has fewer than 2 elements. -}
 
 penultimate :: [a] -> a
-penultimate l = l !! ((length l) - 2)
+penultimate l = last $ init l
 
 {- 3. Find the element at index k in list l. For example, findK 2 [0,0,1,0,0,0]
 returns 1. -}
@@ -29,7 +29,7 @@ findK k l = l !! k
 {- 4. Determine if a list, l, is a palindrome. -}
 
 isPalindrome :: Eq a => [a] -> Bool
-isPalindrome l = if l == (reverse l) then True else False
+isPalindrome l =  reverse l == l
 
 {- 5. Duplicate the elements in list xs. For example duplicate [1,2,3] should
   give the list [1,1,2,2,3,3]. Hint: The concat [l] function flattens a list
@@ -54,7 +54,7 @@ splitAtIndex k l = (take k l, drop k l)
     [0,0,0,1,0,0,0] returns [0,0,0,0,0,0]. -}
 
 dropK :: Int -> [a] -> [a]
-dropK k (x:xs) = if k == 1 then xs else x:(dropK (k-1) xs)
+dropK k (x:xs) = if k == 1 then xs else x:dropK (k-1) xs
 dropK k [] = []
 
 {- 8. Extract elements between ith and kth element in list l,  including i but not k. 
